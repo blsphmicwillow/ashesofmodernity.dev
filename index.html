@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ashesofmodernity's page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #0e0a10;
+    color: #c9bfcb;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 24px 12px 60px;
+  }
+
+  a { color: #b48ab6; text-decoration: none; }
+  a:hover { color: #d8b8da; text-decoration: underline; }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .head {
+    border-bottom: 1px solid #2e2233;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .head h1 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #d8b8da;
+    letter-spacing: 0.5px;
+    margin: 0 0 3px;
+  }
+  .head .sub {
+    font-size: 13px;
+    color: #6d5f70;
+  }
+
+  .col-left {
+    float: left;
+    width: 210px;
+    margin-right: 24px;
+  }
+  .col-right {
+    margin-left: 234px;
+  }
+
+  .pfp {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #4a3550;
+    background: #120c16;
+    display: block;
+  }
+  .pfp img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .who {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #d8b8da;
+  }
+  .who small {
+    display: block;
+    font-size: 10px;
+    color: #6d5f70;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .side-facts {
+    margin-top: 18px;
+    font-size: 11px;
+    color: #8b7d8e;
+  }
+  .side-facts div {
+    padding: 3px 0;
+    border-bottom: 1px dotted #241a28;
+  }
+  .side-facts span {
+    color: #c9bfcb;
+    float: right;
+  }
+  .side-facts span .os-icon {
+    width: 14px;
+    height: 14px;
+    vertical-align: -2px;
+    margin-right: 5px;
+  }
+
+  h2 {
+    font-size: 11px;
+    font-weight: 500;
+    color: #6d5f70;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    border-bottom: 1px solid #241a28;
+    padding-bottom: 4px;
+  }
+
+  section {
+    margin-bottom: 26px;
+  }
+
+  ul.bio {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.bio li {
+    padding: 3px 0;
+    color: #c9bfcb;
+  }
+  ul.bio li::before {
+    content: "⛧ ";
+    color: #8a5a8c;
+    margin-right: 4px;
+  }
+  ul.bio li.dim { color: #8b7d8e; }
+
+  .quote {
+    margin-top: 14px;
+    font-style: italic;
+    color: #8b7d8e;
+    font-size: 11px;
+    border-left: 2px solid #4a3550;
+    padding-left: 10px;
+  }
+
+  .track {
+    font-size: 11px;
+    color: #c9bfcb;
+  }
+  .track .artist {
+    color: #6d5f70;
+  }
+
+  .top8 {
+    font-size: 11px;
+    line-height: 2;
+  }
+  .top8 a {
+    margin-right: 14px;
+    color: #b48ab6;
+  }
+
+  .nav {
+    clear: both;
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid #241a28;
+    text-align: center;
+  }
+
+  .nav-group {
+    margin-bottom: 18px;
+  }
+  .nav-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .nav-label {
+    font-size: 10px;
+    color: #4a3550;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .nav-links a {
+    margin: 0 9px;
+    color: #b48ab6;
+  }
+  .nav-links a:hover {
+    color: #d8b8da;
+  }
+
+  .foot {
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #241a28;
+    font-size: 10px;
+    color: #5a4d5e;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+
+  .msg-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .msg-backdrop.on { display: flex; }
+
+  .msg-box {
+    background: #161018;
+    border: 1px solid #4a3550;
+    width: 100%;
+    max-width: 420px;
+    padding: 18px;
+  }
+  .msg-box h3 {
+    font-size: 11px;
+    font-weight: 500;
+    color: #6d5f70;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+    border-bottom: 1px solid #241a28;
+    padding-bottom: 4px;
+  }
+  .msg-box label {
+    display: block;
+    font-size: 10px;
+    color: #6d5f70;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .msg-box input,
+  .msg-box textarea {
+    width: 100%;
+    background: #0e0a10;
+    border: 1px solid #2e2233;
+    color: #c9bfcb;
+    font-family: inherit;
+    font-size: 12px;
+    padding: 7px 9px;
+    margin-bottom: 12px;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .msg-box input::placeholder,
+  .msg-box textarea::placeholder {
+    color: #4a3a4e;
+    font-style: italic;
+  }
+  .msg-box input:focus,
+  .msg-box textarea:focus {
+    outline: none;
+    border-color: #8a5a8c;
+  }
+  .msg-box textarea {
+    min-height: 90px;
+  }
+  .msg-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+  .msg-actions button {
+    background: transparent;
+    border: 1px solid #2e2233;
+    color: #8b7d8e;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .msg-actions button:hover {
+    color: #d8b8da;
+    border-color: #8a5a8c;
+  }
+  .msg-actions button[type="submit"] {
+    color: #b48ab6;
+  }
+  .msg-status {
+    font-size: 11px;
+    color: #6d5f70;
+    margin-top: 8px;
+    min-height: 14px;
+  }
+  .msg-status.ok { color: #8b9d7e; }
+  .msg-status.err { color: #b47a8a; }
+
+  @media (max-width: 600px) {
+    .col-left { float: none; width: auto; margin: 0 0 20px; }
+    .col-right { margin-left: 0; }
+    .pfp { margin: 0 auto; }
+    .who, .side-facts { text-align: center; }
+    .side-facts span { float: none; margin-left: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="head">
+    <h1>@ashesofmodernity</h1>
+    <div class="sub">Member of earth since 2006</div>
+  </div>
+
+  <div class="col-left">
+    <div class="pfp">
+      <img src="gigi.jpg" alt="">
+    </div>
+
+    <div class="who">
+      Willow
+      <small>she / her</small>
+    </div>
+
+    <div class="side-facts">
+      <div>OS <span><img src="archicon.png" alt="" class="os-icon">Arch Linux</span></div>
+      <div>Timezone <span>GMT+2</span></div>
+      <div>Born <span>4 dec 2006</span></div>
+      <div>Languages <span>Portuguese - English - French (&amp; others)</span></div>
+    </div>
+  </div>
+
+  <div class="col-right">
+
+    <section>
+      <h2>Bio</h2>
+      <ul class="bio">
+        <li>Vampyress &amp; Doll</li>
+        <li>Your everyday post-modernist</li>
+        <li>CyberSec, OSINT, DevOps, SysAdmin, hobbyist programmer &amp; tinkerer</li>
+        <li>My time currently is <a href="#" id="willow-time">00:00</a></li>
+        <li>Proud Linux user since 14/09/2025</li>
+      </ul>
+      <p class="quote">The Sin that makes damnation feel so divine.</p>
+    </section>
+
+    <section>
+      <h2>Favorite current songs</h2>
+      <div class="track">MONSTER <span class="artist">- Destroy Lonely</span></div>
+      <div class="track">HOW U FEEL? <span class="artist">- Destroy Lonely</span></div>
+      <div class="track">LOVE HURTS <span class="artist">- Destroy Lonely</span></div>
+      <div class="track">SUICIDE MISSION <span class="artist">- Destroy Lonely</span></div>
+      <div class="track">LEMONADE <span class="artist">- AESPA</span></div>
+      <div class="track">WHIPLASH <span class="artist">- AESPA</span></div>
+    </section>
+
+    <section>
+      <h2>Best Friends</h2>
+      <div class="top8">
+        <a href="#">Gracie</a>
+        <a href="#">Marcy</a>
+        <a href="#">Jasmine</a>
+        <a href="#">Koellect</a>
+        <a href="#">Marlinda</a>
+        <a href="#">Irene</a>
+        <a href="#">Malone</a>
+        <a href="#">Miko</a>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="nav">
+
+    <div class="nav-group">
+      <div class="nav-label">My Pages</div>
+      <div class="nav-links">
+        <a href="introduction.html">Introduction</a>
+        <a href="passions.html">Passions</a>
+        <a href="contacts.html">Contacts</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Other</div>
+      <div class="nav-links">
+        <a href="https://beingtheadversary.blogspot.com/" target="_blank" rel="noopener">Blogger</a>
+        <a href="https://en.pronouns.page/@BlasphemicWillow" target="_blank" rel="noopener">Pronouns page</a>
+        <a href="gift.html">Gift me</a>
+        <a href="#" id="msg-open">Send me a Message</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    ashesofmodernity · love the world
+  </div>
+
+</div>
+
+<div class="msg-backdrop" id="msg-modal">
+  <form class="msg-box" id="msg-form">
+    <h3>send a message</h3>
+
+    <label for="msg-name">name</label>
+    <input type="text" id="msg-name" maxlength="40" placeholder="Feel free to use Anonymous" required>
+
+    <label for="msg-discord">discord tag</label>
+    <input type="text" id="msg-discord" maxlength="60" placeholder="Leave blank if none or private">
+
+    <label for="msg-body">message</label>
+    <textarea id="msg-body" maxlength="500" placeholder="Avoid rude comments and be kind to me <3" required></textarea>
+
+    <div class="msg-actions">
+      <button type="button" id="msg-cancel">cancel</button>
+      <button type="submit">send</button>
+    </div>
+    <div class="msg-status" id="msg-status"></div>
+  </form>
+</div>
+
+<script>
+  (function () {
+    var OFFSET = 2;
+
+    function tick() {
+      var now = new Date();
+      var utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      var her = new Date(utc + (OFFSET * 3600000));
+
+      var hh = String(her.getHours()).padStart(2, '0');
+      var mm = String(her.getMinutes()).padStart(2, '0');
+
+      document.getElementById('willow-time').textContent = hh + ':' + mm;
+    }
+
+    tick();
+    setInterval(tick, 30000);
+  })();
+</script>
+
+<script>
+  (function () {
+    var WH = [
+      "https://discord.com/api/webhooks/",
+      "1556492726298746934/",
+      "m_5LETiNk3LsG2imLI1y_li6Fs8NgtHZ-aoy5g4K7ztahmYX9k5aYGpC-5yqjlRwWC-Y"
+    ].join("");
+
+    var modal  = document.getElementById("msg-modal");
+    var form   = document.getElementById("msg-form");
+    var open   = document.getElementById("msg-open");
+    var cancel = document.getElementById("msg-cancel");
+    var status = document.getElementById("msg-status");
+
+    open.addEventListener("click", function (e) {
+      e.preventDefault();
+      status.textContent = "";
+      status.className = "msg-status";
+      modal.classList.add("on");
+      document.getElementById("msg-name").focus();
+    });
+
+    cancel.addEventListener("click", function () {
+      modal.classList.remove("on");
+      form.reset();
+      status.textContent = "";
+      status.className = "msg-status";
+    });
+
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        modal.classList.remove("on");
+        form.reset();
+        status.textContent = "";
+        status.className = "msg-status";
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("on")) {
+        modal.classList.remove("on");
+        form.reset();
+        status.textContent = "";
+        status.className = "msg-status";
+      }
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name    = document.getElementById("msg-name").value.trim();
+      var discord = document.getElementById("msg-discord").value.trim();
+      var body    = document.getElementById("msg-body").value.trim();
+      if (!name || !body) return;
+
+      status.textContent = "sending...";
+      status.className = "msg-status";
+
+      var content = "@everyone\n";
+      content += "**name:** " + name + "\n";
+      if (discord) content += "**discord:** " + discord + "\n";
+      content += "\n" + body;
+
+      fetch(WH, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: content,
+          username: "ashesofmodernity",
+          allowed_mentions: { parse: ["everyone"] }
+        })
+      })
+      .then(function (r) {
+        if (!r.ok) throw new Error("bad status " + r.status);
+        status.textContent = "sent.";
+        status.className = "msg-status ok";
+        form.reset();
+        setTimeout(function () {
+          modal.classList.remove("on");
+          status.textContent = "";
+          status.className = "msg-status";
+        }, 1200);
+      })
+      .catch(function () {
+        status.textContent = "couldn't send. try again later.";
+        status.className = "msg-status err";
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
