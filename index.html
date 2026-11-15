@@ -974,7 +974,7 @@
 
     <div class="side-facts">
       <div>OS <span><img src="archicon.png" alt="" class="os-icon">Arch Linux</span></div>
-      <div>Timezone <span>GMT+2</span></div>
+      <div>Timezone <span id="tz-offset">GMT+2</span></div>
       <div>Born <span>4 dec. 2006</span></div>
       <div>Partner <span>Gracie</span></div>
       <div>Languages <span>Portuguese - English - French (&amp; others)</span></div>
@@ -1102,14 +1102,36 @@
 
 <script>
   (function () {
-    var OFFSET = 2;
+    var ZONE = 'Europe/Zurich';
+    var timeEl = document.getElementById('willow-time');
+    var offsetEl = document.getElementById('tz-offset');
+
+    var clock = null;
+    try {
+      clock = new Intl.DateTimeFormat('en-GB', {
+        timeZone: ZONE, hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      });
+    } catch (e) {}
+
+    function offsetLabel() {
+      try {
+        var parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: ZONE, timeZoneName: 'shortOffset'
+        }).formatToParts(new Date());
+        for (var i = 0; i < parts.length; i++) {
+          if (parts[i].type === 'timeZoneName') return parts[i].value.replace('UTC', 'GMT');
+        }
+      } catch (e) {}
+      return '';
+    }
+
     function tick() {
-      var now = new Date();
-      var utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      var her = new Date(utc + (OFFSET * 3600000));
-      var hh = String(her.getHours()).padStart(2, '0');
-      var mm = String(her.getMinutes()).padStart(2, '0');
-      document.getElementById('willow-time').textContent = hh + ':' + mm;
+      if (!clock) return;
+      if (timeEl) timeEl.textContent = clock.format(new Date());
+      if (offsetEl) {
+        var label = offsetLabel();
+        if (label) offsetEl.textContent = label;
+      }
     }
     tick();
     setInterval(tick, 30000);
