@@ -251,6 +251,134 @@
       -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%);
       mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%);
     }
+
+    /* ---- project cards ---- */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .project-card {
+      position: relative;
+      padding: 15px 16px 13px;
+      border-radius: 16px;
+      background-color: rgba(255, 255, 255, 0.045);
+      background-image: radial-gradient(circle at 18% 0%, rgba(216, 184, 218, 0.10), transparent 62%);
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      border-left: 1px solid rgba(255, 255, 255, 0.10);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease,
+                  background-color 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      background: radial-gradient(circle at 50% 0%, rgba(216, 184, 218, 0.16), transparent 70%);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(216, 184, 218, 0.35);
+      background-color: rgba(255, 255, 255, 0.065);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4), 0 0 26px rgba(180, 138, 182, 0.16),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    }
+    .project-card:hover::after { opacity: 1; }
+
+    .project-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .project-name {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      margin: 0;
+      color: #f0e6f2;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    }
+    .project-name a { color: inherit; }
+    .project-name a:hover { color: #ffffff; }
+
+    .project-when {
+      font-size: 10px;
+      color: #a99cab;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.3px;
+    }
+    .project-when::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d8b8da;
+      box-shadow: 0 0 8px rgba(216, 184, 218, 0.8);
+    }
+
+    .project-desc {
+      font-size: 12px;
+      line-height: 1.65;
+      color: #c9bfcb;
+      margin: 0;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+    }
+
+    .project-langs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .project-langs span {
+      font-size: 10px;
+      letter-spacing: 0.4px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: #e6c9e8;
+      background: rgba(216, 184, 218, 0.10);
+      border: 1px solid rgba(216, 184, 218, 0.22);
+      white-space: nowrap;
+    }
+
+    .project-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 10.5px;
+      color: #a99cab;
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px dotted rgba(255, 255, 255, 0.10);
+    }
+    .project-foot a { color: #e6c9e8; }
+    .project-foot a:hover { color: #ffffff; }
+
+    @media (max-width: 600px) {
+      .project-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -297,15 +425,33 @@
     <p id="gh-activity">Last active on GitHub:
       <a href="https://github.com/blsphmicwillow" target="_blank" rel="noopener">checking…</a></p>
 
-    <div id="projects">
+    <div class="project-grid" id="projects">
 
-      <h2><a href="https://github.com/blsphmicwillow/OpenBeats" target="_blank" rel="noopener">OpenBeats</a></h2>
-      <p>An open-source DAW studio for Linux, Windows and macOS. AI-assisted code that is reviewed, tested and debugged before release.</p>
-      <p><em>TypeScript · last active 15 Nov 2026 · <a href="https://github.com/blsphmicwillow/OpenBeats" target="_blank" rel="noopener">repository</a></em></p>
+      <article class="project-card">
+        <div class="project-top">
+          <h3 class="project-name"><a href="https://github.com/blsphmicwillow/OpenBeats" target="_blank" rel="noopener">OpenBeats</a></h3>
+          <span class="project-when">9h ago</span>
+        </div>
+        <p class="project-desc">An open-source DAW studio for Linux, Windows and macOS. AI-assisted code that is reviewed, tested and debugged before release.</p>
+        <div class="project-langs"><span>TypeScript</span></div>
+        <div class="project-foot">
+          <span>last active 15 Nov 2026</span>
+          <a href="https://github.com/blsphmicwillow/OpenBeats" target="_blank" rel="noopener">repository &nearr;</a>
+        </div>
+      </article>
 
-      <h2><a href="https://github.com/blsphmicwillow/ashesofmodernity.dev" target="_blank" rel="noopener">ashesofmodernity.dev</a></h2>
-      <p>My personal site — the page you are reading, hand-written HTML, CSS and JavaScript.</p>
-      <p><em>HTML · last active 15 Nov 2026 · <a href="https://github.com/blsphmicwillow/ashesofmodernity.dev" target="_blank" rel="noopener">repository</a></em></p>
+      <article class="project-card">
+        <div class="project-top">
+          <h3 class="project-name"><a href="https://github.com/blsphmicwillow/ashesofmodernity.dev" target="_blank" rel="noopener">ashesofmodernity.dev</a></h3>
+          <span class="project-when">just now</span>
+        </div>
+        <p class="project-desc">My personal site — the page you are reading, hand-written HTML, CSS and JavaScript.</p>
+        <div class="project-langs"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        <div class="project-foot">
+          <span>last active 15 Nov 2026</span>
+          <a href="https://github.com/blsphmicwillow/ashesofmodernity.dev" target="_blank" rel="noopener">repository &nearr;</a>
+        </div>
+      </article>
 
     </div>
 
@@ -337,9 +483,11 @@
 <script>
   (function () {
     var USER = 'blsphmicwillow';
-    var list = document.getElementById('projects');
+    var grid = document.getElementById('projects');
     var activity = document.getElementById('gh-activity');
-    if (!list) return;
+    if (!grid) return;
+
+    var LANG_TTL = 60 * 60 * 1000;   // cache language lists for an hour
 
     function ago(iso) {
       var then = new Date(iso).getTime();
@@ -366,6 +514,43 @@
       });
     }
 
+    function languages(repo) {
+      var key = 'gh-langs:' + repo.full_name;
+      try {
+        var hit = JSON.parse(sessionStorage.getItem(key) || 'null');
+        if (hit && Date.now() - hit.at < LANG_TTL) return Promise.resolve(hit.langs);
+      } catch (e) {}
+
+      return fetch(repo.languages_url, { headers: { Accept: 'application/vnd.github+json' } })
+        .then(function (res) {
+          if (!res.ok) throw new Error('languages ' + res.status);
+          return res.json();
+        })
+        .then(function (byBytes) {
+          var langs = Object.keys(byBytes).sort(function (a, b) { return byBytes[b] - byBytes[a]; }).slice(0, 6);
+          try { sessionStorage.setItem(key, JSON.stringify({ at: Date.now(), langs: langs })); } catch (e) {}
+          return langs;
+        })
+        .catch(function () { return repo.language ? [repo.language] : []; });
+    }
+
+    function card(repo, langs) {
+      var url = esc(repo.html_url);
+      var pills = langs.map(function (l) { return '<span>' + esc(l) + '</span>'; }).join('');
+      return '<article class="project-card">' +
+        '<div class="project-top">' +
+          '<h3 class="project-name"><a href="' + url + '" target="_blank" rel="noopener">' + esc(repo.name) + '</a></h3>' +
+          '<span class="project-when">' + ago(repo.pushed_at) + '</span>' +
+        '</div>' +
+        (repo.description ? '<p class="project-desc">' + esc(repo.description) + '</p>' : '') +
+        (pills ? '<div class="project-langs">' + pills + '</div>' : '') +
+        '<div class="project-foot">' +
+          '<span>last active ' + date(repo.pushed_at) + '</span>' +
+          '<a href="' + url + '" target="_blank" rel="noopener">repository &nearr;</a>' +
+        '</div>' +
+      '</article>';
+    }
+
     fetch('https://api.github.com/users/' + USER + '/repos?per_page=100&sort=pushed', {
       headers: { Accept: 'application/vnd.github+json' }
     }).then(function (res) {
@@ -376,24 +561,19 @@
         return new Date(b.pushed_at) - new Date(a.pushed_at);
       });
       if (!items.length) return;
-      list.innerHTML = items.map(function (r) {
-        var meta = [];
-        if (r.language) meta.push(esc(r.language));
-        meta.push('last active ' + ago(r.pushed_at));
-        var url = esc(r.html_url);
-        return '<h2><a href="' + url + '" target="_blank" rel="noopener">' + esc(r.name) + '</a></h2>' +
-          (r.description ? '<p>' + esc(r.description) + '</p>' : '') +
-          '<p><em>' + meta.join(' &middot; ') + ' &middot; <a href="' + url +
-          '" target="_blank" rel="noopener">repository</a></em></p>';
-      }).join('');
-      var last = items[0].pushed_at;
-      activity.innerHTML = 'Last active on GitHub: <a href="https://github.com/' + USER +
-        '" target="_blank" rel="noopener">' + date(last) + '</a> (' + ago(last) + ')';
+
+      return Promise.all(items.map(languages)).then(function (langsByRepo) {
+        grid.innerHTML = items.map(function (repo, i) { return card(repo, langsByRepo[i]); }).join('');
+        var last = items[0].pushed_at;
+        activity.innerHTML = 'Last active on GitHub: <a href="https://github.com/' + USER +
+          '" target="_blank" rel="noopener">' + date(last) + '</a> (' + ago(last) + ')';
+      });
     }).catch(function () {
       activity.innerHTML = 'Last active on GitHub: <a href="https://github.com/' + USER +
         '" target="_blank" rel="noopener">' + USER + '</a>';
     });
   })();
 </script>
+
 </body>
 </html>
