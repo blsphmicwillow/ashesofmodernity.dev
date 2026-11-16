@@ -1,4 +1,4 @@
-/* ashesofmodernity.dev — shared background, particle and audio effects.
+/* ashesofmodernity.dev: shared background, particle and audio effects.
  *
  * Optimised version of the scripts that used to be inlined in every page.
  * The look is unchanged; the work behind it is not:
