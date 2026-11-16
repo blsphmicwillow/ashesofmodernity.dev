@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects - ashesofmodernity</title>
+  <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <link rel="icon" href="favicon.png?v=2" type="image/png" sizes="512x512">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; }
+    body {
+      background: #0e0a10; color: #c9bfcb;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 14px; line-height: 1.7;
+      margin: 0; padding: 24px 12px 60px; position: relative;
+      overflow-x: hidden;
+    }
+    .ps3-bg {
+      position: fixed; inset: 0; z-index: -3; overflow: hidden;
+      background: radial-gradient(circle at 30% 40%, #1a0f1e, #0a060c 80%);
+      pointer-events: none;
+    }
+    .ps3-bg .glow-orb {
+      position: absolute; border-radius: 50%; opacity: 0.4;
+      mix-blend-mode: screen; pointer-events: none;
+      animation: orbFloat 18s ease-in-out infinite alternate;
+    }
+    .ps3-bg .orb1 {
+      width: 60vw; height: 60vw; top: -10%; left: -10%;
+      background: radial-gradient(circle, rgba(180, 138, 182, 0.35), transparent 70%);
+      animation-duration: 22s;
+    }
+    .ps3-bg .orb2 {
+      width: 70vw; height: 70vw; bottom: -20%; right: -10%;
+      background: radial-gradient(circle, rgba(138, 90, 140, 0.4), transparent 70%);
+      animation-duration: 28s; animation-delay: -6s;
+    }
+    .ps3-bg .orb3 {
+      width: 50vw; height: 50vw; top: 40%; left: 30%;
+      background: radial-gradient(circle, rgba(216, 184, 218, 0.2), transparent 70%);
+      animation-duration: 20s; animation-delay: -3s;
+    }
+    @keyframes orbFloat {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(4%, 6%) scale(1.1); }
+      100% { transform: translate(-3%, -4%) scale(0.95); }
+    }
+    .pulse-light {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      mix-blend-mode: screen; opacity: 0;
+      animation: slowPulse var(--dur, 12s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+      will-change: transform, opacity;
+    }
+    .pulse-light.p1 { width: 40vw; height: 40vw; top: 10%; left: 5%;
+      background: radial-gradient(circle, rgba(200, 140, 210, 0.55), transparent 70%);
+      --dur: 14s; --delay: 0s; }
+    .pulse-light.p2 { width: 55vw; height: 55vw; bottom: 5%; right: 0%;
+      background: radial-gradient(circle, rgba(160, 100, 180, 0.5), transparent 70%);
+      --dur: 19s; --delay: 3s; }
+    .pulse-light.p3 { width: 30vw; height: 30vw; top: 45%; left: 50%;
+      background: radial-gradient(circle, rgba(220, 180, 230, 0.4), transparent 70%);
+      --dur: 22s; --delay: 7s; }
+    .pulse-light.p4 { width: 35vw; height: 35vw; top: 70%; left: 15%;
+      background: radial-gradient(circle, rgba(150, 80, 160, 0.45), transparent 70%);
+      --dur: 16s; --delay: 10s; }
+    .pulse-light.p5 { width: 25vw; height: 25vw; top: 20%; right: 20%;
+      background: radial-gradient(circle, rgba(240, 200, 245, 0.3), transparent 70%);
+      --dur: 25s; --delay: 5s; }
+    @keyframes slowPulse {
+      0%   { opacity: 0; transform: scale(0.85) translate(0, 0); }
+      25%  { opacity: 0.5; }
+      50%  { opacity: 0.85; transform: scale(1.15) translate(2%, -2%); }
+      75%  { opacity: 0.35; }
+      100% { opacity: 0; transform: scale(0.9) translate(-1%, 1%); }
+    }
+    .light-beam {
+      position: absolute; top: -20%; left: 50%; width: 60vw; height: 160vh;
+      transform: translateX(-50%) rotate(-12deg);
+      background: linear-gradient(180deg,
+        rgba(216, 184, 218, 0) 0%, rgba(216, 184, 218, 0.06) 30%,
+        rgba(240, 214, 242, 0.1) 50%, rgba(216, 184, 218, 0.06) 70%,
+        rgba(216, 184, 218, 0) 100%);
+      mix-blend-mode: screen; pointer-events: none;
+      animation: beamSway 24s ease-in-out infinite alternate;
+    }
+    .light-beam.beam2 {
+      left: 30%; width: 40vw; transform: translateX(-50%) rotate(18deg);
+      background: linear-gradient(180deg,
+        rgba(180, 138, 182, 0) 0%, rgba(180, 138, 182, 0.05) 40%,
+        rgba(200, 160, 210, 0.09) 55%, rgba(180, 138, 182, 0.05) 70%,
+        rgba(180, 138, 182, 0) 100%);
+      animation-duration: 32s; animation-delay: -8s;
+      animation-name: beamSway2;
+    }
+    @keyframes beamSway {
+      0%   { transform: translateX(-50%) rotate(-12deg) scaleY(1); opacity: 0.7; }
+      50%  { transform: translateX(-48%) rotate(-8deg) scaleY(1.05); opacity: 1; }
+      100% { transform: translateX(-52%) rotate(-14deg) scaleY(0.98); opacity: 0.8; }
+    }
+    @keyframes beamSway2 {
+      0%   { transform: translateX(-50%) rotate(18deg) scaleY(1); opacity: 0.6; }
+      50%  { transform: translateX(-52%) rotate(14deg) scaleY(1.08); opacity: 0.9; }
+      100% { transform: translateX(-48%) rotate(22deg) scaleY(0.95); opacity: 0.7; }
+    }
+    .ethereal-glow {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(180, 138, 182, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(216, 184, 218, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(138, 90, 140, 0.04) 0%, transparent 70%);
+      animation: etherealShift 30s ease-in-out infinite alternate;
+    }
+    @keyframes etherealShift {
+      0%   { opacity: 0.7; transform: scale(1); }
+      50%  { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.7; transform: scale(0.98); }
+    }
+    .wave-glow { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: transparent; pointer-events: none; }
+    .wave-glow span {
+      position: absolute; left: -20%; width: 140%; height: 60vh;
+      will-change: transform; opacity: 0.8;
+    }
+    .wave-glow .g1 {
+      top: 15vh;
+      background: linear-gradient(100deg, rgba(138,90,140,0) 0%, rgba(138,90,140,0.35) 30%, rgba(180,138,182,0.5) 55%, rgba(138,90,140,0.35) 80%, rgba(138,90,140,0) 100%);
+      animation: drift1 26s ease-in-out infinite alternate;
+    }
+    .wave-glow .g2 {
+      top: 42vh;
+      background: linear-gradient(85deg, rgba(216,184,218,0) 0%, rgba(216,184,218,0.28) 28%, rgba(240,214,242,0.42) 55%, rgba(216,184,218,0.28) 82%, rgba(216,184,218,0) 100%);
+      animation: drift2 31s ease-in-out infinite alternate;
+    }
+    @keyframes drift1 {
+      0% { transform: translate3d(-8%, 0, 0) skewY(-6deg); }
+      50% { transform: translate3d(4%, 4vh, 0) skewY(3deg); }
+      100% { transform: translate3d(14%, -3vh, 0) skewY(-5deg); }
+    }
+    @keyframes drift2 {
+      0% { transform: translate3d(10%, 3vh, 0) skewY(5deg); }
+      50% { transform: translate3d(-3%, -4vh, 0) skewY(-3deg); }
+      100% { transform: translate3d(-14%, 2vh, 0) skewY(6deg); }
+    }
+    #wave-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; display: block; background: transparent; }
+    #particles-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
+    body::after {
+      content: ""; position: fixed; top: -15%; left: -15%; width: 130%; height: 130%;
+      background-image: url('whitenoise.png'); background-repeat: repeat; background-size: 260px 260px;
+      opacity: 0.18; pointer-events: none; z-index: 9998; mix-blend-mode: screen;
+      animation: staticShift 0.12s steps(1) infinite;
+    }
+    @keyframes staticShift {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-2.5%, -1.5%); }
+      20% { transform: translate(1.5%, -3.5%); }
+      30% { transform: translate(-3.5%, 2.5%); }
+      40% { transform: translate(3.5%, -2.5%); }
+      50% { transform: translate(-1.5%, 3.5%); }
+      60% { transform: translate(2.5%, 1.5%); }
+      70% { transform: translate(-2.5%, -3.5%); }
+      80% { transform: translate(3.5%, 2.5%); }
+      90% { transform: translate(-1.5%, -2.5%); }
+      100% { transform: translate(0, 0); }
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      background: radial-gradient(ellipse at center, transparent 0%, transparent 45%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.6) 100%);
+    }
+    a { color: #d8b8da; text-decoration: none; transition: color 0.3s ease; }
+    a:hover { color: #f0e6f2; text-decoration: underline; }
+    .page { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
+    .head, .content, .nav, .foot {
+      background-color: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px) saturate(150%); -webkit-backdrop-filter: blur(10px) saturate(150%);
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      padding: 16px 22px; box-sizing: border-box;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                  box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                  border-color 0.4s ease,
+                  background-color 0.4s ease;
+    }
+    .head:hover, .content:hover, .nav:hover, .foot:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(180, 138, 182, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      border-color: rgba(216, 184, 218, 0.25);
+      background-color: rgba(255, 255, 255, 0.06);
+    }
+    .head { padding-bottom: 14px; margin-bottom: 20px; transform: rotate(-0.5deg); }
+    .head h1 {
+      font-size: 18px; font-weight: 500; color: #f0e6f2; letter-spacing: 0.5px; margin: 0 0 3px;
+      transform: rotate(0.4deg); display: inline-block; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    }
+    .head .sub { font-size: 13px; color: #a99cab; transform: rotate(-0.3deg); display: inline-block; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+    .content { transform: rotate(0.3deg); padding: 22px 26px; }
+    h2 {
+      font-size: 11px; font-weight: 500; color: #d8b8da; letter-spacing: 1px; text-transform: uppercase;
+      margin: 26px 0 12px;
+      border-bottom: 1px solid rgba(216, 184, 218, 0.2); padding-bottom: 6px;
+      transform: rotate(-0.5deg); display: block; clear: both;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    h2:first-of-type { margin-top: 0; }
+    p {
+      margin: 0 0 12px; color: #ece4ee;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      display: block; clear: both;
+    }
+    p:nth-child(odd)  { transform: rotate(-0.4deg); }
+    p:nth-child(even) { transform: rotate(0.5deg); }
+    p strong { font-weight: 500; color: #e0b8e2; }
+    p em { font-style: normal; color: #a99cab; font-size: 12px; }
+    .nav { clear: both; margin-top: 48px; padding: 24px 22px; text-align: center; transform: rotate(-0.2deg); }
+    .nav-label {
+      font-size: 10px; color: #d8b8da; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;
+      transform: rotate(0.7deg); display: inline-block; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    .nav-links a { margin: 0 9px; color: #e6c9e8; display: inline-block; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+    .nav-links a:nth-child(odd) { transform: rotate(-1deg); }
+    .nav-links a:nth-child(even) { transform: rotate(1deg); }
+    .nav-links a:hover { color: #ffffff; }
+    .foot {
+      margin-top: 24px; padding: 16px 22px; font-size: 10px; color: #a99cab;
+      letter-spacing: 0.5px; text-align: center; transform: rotate(0.4deg);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+    @media (max-width: 600px) {
+      .head:hover, .content:hover, .nav:hover, .foot:hover {
+        transform: translateY(-3px) scale(1.005);
+      }
+    }
+
+    /* The glow layers used to run blur(50-80px) filters over 60-70vw surfaces,
+       which re-rasterised every frame. Those gradients already fade to
+       transparent, so the blur is replaced by cheap edge masks instead. */
+    .light-beam {
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 70%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 70%, transparent 100%);
+    }
+    .wave-glow span {
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%);
+    }
+  </style>
+</head>
+<body>
+
+<div class="ps3-bg" aria-hidden="true">
+  <div class="glow-orb orb1"></div>
+  <div class="glow-orb orb2"></div>
+  <div class="glow-orb orb3"></div>
+  <div class="light-beam"></div>
+  <div class="light-beam beam2"></div>
+  <div class="pulse-light p1"></div>
+  <div class="pulse-light p2"></div>
+  <div class="pulse-light p3"></div>
+  <div class="pulse-light p4"></div>
+  <div class="pulse-light p5"></div>
+</div>
+
+<div class="ethereal-glow" aria-hidden="true"></div>
+
+<div class="wave-glow">
+  <span class="g1"></span>
+  <span class="g2"></span>
+</div>
+
+<canvas id="wave-bg"></canvas>
+<canvas id="particles-bg"></canvas>
+
+<audio id="hover-audio" src="hover.mp3" preload="auto"></audio>
+<audio id="bg-audio" src="background.mp3" preload="metadata" loop></audio>
+
+<div class="page">
+
+  <div class="head">
+    <h1>Projects</h1>
+    <div class="sub">personal projects</div>
+  </div>
+
+  <div class="content">
+
+    <h2>Projects</h2>
+    <p>Personal things I build and keep alive — mostly code. All of it lives on
+      <a href="https://github.com/blsphmicwillow" target="_blank" rel="noopener">github.com/blsphmicwillow</a>,
+      newest activity first.</p>
+    <p id="gh-activity">Last active on GitHub:
+      <a href="https://github.com/blsphmicwillow" target="_blank" rel="noopener">checking…</a></p>
+
+    <div id="projects">
+
+      <h2><a href="https://github.com/blsphmicwillow/OpenBeats" target="_blank" rel="noopener">OpenBeats</a></h2>
+      <p>An open-source DAW studio for Linux, Windows and macOS. AI-assisted code that is reviewed, tested and debugged before release.</p>
+      <p><em>TypeScript · last active 15 Nov 2026 · <a href="https://github.com/blsphmicwillow/OpenBeats" target="_blank" rel="noopener">repository</a></em></p>
+
+      <h2><a href="https://github.com/blsphmicwillow/ashesofmodernity.dev" target="_blank" rel="noopener">ashesofmodernity.dev</a></h2>
+      <p>My personal site — the page you are reading, hand-written HTML, CSS and JavaScript.</p>
+      <p><em>HTML · last active 15 Nov 2026 · <a href="https://github.com/blsphmicwillow/ashesofmodernity.dev" target="_blank" rel="noopener">repository</a></em></p>
+
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <div class="nav-label">back</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    ashesofmodernity · love building things
+  </div>
+
+</div>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script defer src="assets/site.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var USER = 'blsphmicwillow';
+    var list = document.getElementById('projects');
+    var activity = document.getElementById('gh-activity');
+    if (!list) return;
+
+    function ago(iso) {
+      var then = new Date(iso).getTime();
+      if (isNaN(then)) return '';
+      var s = Math.max(1, Math.round((Date.now() - then) / 1000));
+      var units = [[31536000, 'year'], [2592000, 'month'], [604800, 'week'],
+                   [86400, 'day'], [3600, 'hour'], [60, 'minute']];
+      for (var i = 0; i < units.length; i++) {
+        var n = Math.floor(s / units[i][0]);
+        if (n >= 1) return n + ' ' + units[i][1] + (n > 1 ? 's' : '') + ' ago';
+      }
+      return 'just now';
+    }
+
+    function date(iso) {
+      try {
+        return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch (e) { return ''; }
+    }
+
+    function esc(text) {
+      return String(text).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    }
+
+    fetch('https://api.github.com/users/' + USER + '/repos?per_page=100&sort=pushed', {
+      headers: { Accept: 'application/vnd.github+json' }
+    }).then(function (res) {
+      if (!res.ok) throw new Error('github ' + res.status);
+      return res.json();
+    }).then(function (repos) {
+      var items = repos.filter(function (r) { return !r.fork; }).sort(function (a, b) {
+        return new Date(b.pushed_at) - new Date(a.pushed_at);
+      });
+      if (!items.length) return;
+      list.innerHTML = items.map(function (r) {
+        var meta = [];
+        if (r.language) meta.push(esc(r.language));
+        meta.push('last active ' + ago(r.pushed_at));
+        var url = esc(r.html_url);
+        return '<h2><a href="' + url + '" target="_blank" rel="noopener">' + esc(r.name) + '</a></h2>' +
+          (r.description ? '<p>' + esc(r.description) + '</p>' : '') +
+          '<p><em>' + meta.join(' &middot; ') + ' &middot; <a href="' + url +
+          '" target="_blank" rel="noopener">repository</a></em></p>';
+      }).join('');
+      var last = items[0].pushed_at;
+      activity.innerHTML = 'Last active on GitHub: <a href="https://github.com/' + USER +
+        '" target="_blank" rel="noopener">' + date(last) + '</a> (' + ago(last) + ')';
+    }).catch(function () {
+      activity.innerHTML = 'Last active on GitHub: <a href="https://github.com/' + USER +
+        '" target="_blank" rel="noopener">' + USER + '</a>';
+    });
+  })();
+</script>
+</body>
+</html>
