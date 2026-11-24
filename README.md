@@ -1,11 +1,11 @@
 # ashesofmodernity.dev
 
-My personal site — hand-written HTML and CSS with no framework and no build step, served straight from this branch by GitHub Pages at **[ashesofmodernity.dev](https://ashesofmodernity.dev)**.
+My personal site. Hand-written HTML and CSS with no framework and no build step, served straight from this branch by GitHub Pages at **[ashesofmodernity.dev](https://ashesofmodernity.dev)**.
 
 ## Pages
 
 | File | Page |
-| --- | --- |
+| :-- | :-- |
 | `index.html` | Landing page |
 | `introduction.html` | Who I am |
 | `passions.html` | What I care about |
@@ -37,7 +37,7 @@ whitenoise.png        background texture
 
 ## Run locally
 
-There is nothing to install; GitHub Pages serves the files statically, so any static server reproduces it:
+There is nothing to install. GitHub Pages serves the files statically, so any static server reproduces it:
 
 ```shell
 python3 -m http.server 8000
@@ -47,4 +47,4 @@ Then open <http://localhost:8000>. Opening the `.html` files directly from disk 
 
 ## Deploy
 
-Push to `main`. GitHub Pages publishes the repository root, and `CNAME` keeps the site on the apex domain. Every page is plain HTML, so a change is live as soon as the Pages build finishes — check the **Actions** tab for the deploy run.
+Push to `main`. GitHub Pages publishes the repository root, and `CNAME` keeps the site on the apex domain. Every page is plain HTML, so a change goes live as soon as the Pages build finishes. Check the **Actions** tab for the deploy run.
